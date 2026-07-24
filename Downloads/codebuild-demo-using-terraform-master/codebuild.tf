@@ -70,6 +70,7 @@ resource "aws_codebuild_source_credential" "codebuild_project" {
   count       = var.source_type == "GITHUB" ? 1 : 0
   auth_type   = "PERSONAL_ACCESS_TOKEN"
   server_type = "GITHUB"
+  #
   token       = jsondecode(data.aws_secretsmanager_secret_version.github_pat[0].secret_string)["Github PAT"]
   lifecycle {
     prevent_destroy = false
