@@ -1,6 +1,6 @@
-terraform {
-    git_source = git@github.com:sureshArnold/codebuild-demo-using-terraform.git
-}
+#terraform {
+ #   git_source = "git@github.com:sureshArnold/codebuild-demo-using-terraform.git"
+#}
 
 application = "codebuild_demo"
 
