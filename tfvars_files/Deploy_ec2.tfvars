@@ -43,7 +43,7 @@ root_volume = {
 
 is_public = true
 
-custom_key_pair_name = "ec2-key"
+custom_key_pair_name = "ec2_key_pair"
 
 ami_id = "ami-00adafae70b8029d8"
 ami_type = "rhel9"
