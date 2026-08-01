@@ -1,30 +1,38 @@
-#!/bin/bash
+# Update the system
+sudo dnf update -y
 
-set -e
+# Install Java (OpenJDK 21)
+sudo dnf install java-21-openjdk -y
 
-# Update system
-dnf update -y
-
-# Install required packages
-dnf install -y wget java-17-openjdk
-
-# Verify Java
+# Verify Java installation
 java -version
 
-# Add Jenkins repository
-wget -O /etc/yum.repos.d/jenkins.repo \
-https://pkg.jenkins.io/redhat-stable/jenkins.repo
+# Import the Jenkins repository GPG key
+sudo rpm --import https://pkg.jenkins.io/redhat-stable/jenkins.io-2023.key
+
+# Add the Jenkins repository
+# Add Jenkins repo
+sudo dnf install wget -y
+sudo wget -O /etc/yum.repos.d/jenkins.repo https://pkg.jenkins.io/redhat-stable/jenkins.repo
 
 # Import Jenkins repository key
-rpm --import https://pkg.jenkins.io/redhat-stable/jenkins.io-2026.key
+sudo rpm --import https://pkg.jenkins.io/redhat-stable/jenkins.io-2023.key
 
-# Install Jenkins
-dnf install -y jenkins
 
-# Start Jenkins
-systemctl enable jenkins
-systemctl start jenkins
+sudo dnf clean all
+sudo dnf install -y Jenkins
 
-# Allow Jenkins through RHEL firewall
-firewall-cmd --permanent --add-port=8080/tcp
-firewall-cmd --reload
+sudo systemctl enable --now Jenkins
+
+sudo systemctl start Jenkins
+
+sudo systemctl status Jenkins
+
+
+sudo dnf install firewalld -y
+sudo systemctl enable --now firewalld
+sudo firewall-cmd --permanent --add-port=8080/tcp
+sudo firewall-cmd --reload
+
+sudo cat /var/lib/jenkins/secrets/initialAdminPassword
+

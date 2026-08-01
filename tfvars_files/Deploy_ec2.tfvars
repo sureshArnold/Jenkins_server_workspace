@@ -34,7 +34,7 @@ sg_outbound_rules = [
     }
 ]
 
-instance_type = "t3.micro"
+instance_type = "c7i-flex.large"
 root_volume = {
     volume_size = 10
     volume_type = "gp2"
@@ -45,7 +45,7 @@ is_public = true
 
 custom_key_pair_name = "ec2_key_pair"
 
-ami_id = "ami-00adafae70b8029d8"
+ami_id = "ami-07290b6b6b1f4d7b4"
 ami_type = "rhel9"
 
 Instance_name = "JenkinsServer"
